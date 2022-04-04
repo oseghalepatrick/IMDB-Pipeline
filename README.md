@@ -1,4 +1,4 @@
-# Project Proposal
+# Data Engineering Zoomcamp Project
 
 ## Problem description - IMDB Movies and Series Rating
 IMDB is a popular online and authorative source for movies and TV shows review and ratings and has database of infomation related to films, TV series and streaming content online including cast and production crew.
