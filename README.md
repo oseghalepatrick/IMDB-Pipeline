@@ -29,20 +29,7 @@ The data is a subset of IMDB dataset which is available for access on the [IMDB 
 The Google Cloud Platform is used for deploying the pipeline, Google Cloud Storage (GCS) as a data lake, and BigQuery as a data warehouse.
 
 ### Infrastructure as code (IaC): Terraform
-Terraform is an open source tool which has been used for provisioning infrastructure resources. In this case, it was used to create GCP Infra by creating the following [Terraform files](./terraform):
-- `main.tf`
-- `variables.tf`
-- `.tfstate`
-
-The necessary configurations were made to ensure the successful execution and also set the resources as `google_storage_bucket, google_bigquery_dataset, google_bigquery_table` thereby creating the bucket from the project and also creating the BigQuery dataset and the bigquery tables for all movie data and the transform data from DBT.
-
-#### Execution steps
-1. `terraform init`:
-    * Initializes & configures the backend, installs plugins/providers, & checks out an existing configuration from a version control
-2. `terraform plan`:
-    * Matches/previews local changes against a remote state, and proposes an Execution Plan.
-3. `terraform apply`:
-    * Asks for approval to the proposed plan, and applies changes to cloud.
+Terraform is an open source tool which has been used for provisioning infrastructure resources. In this case, it was used to create GCP Infra by creating the following [Terraform files](./terraform).
 
 ### Workflow orchestration: Airflow
 Apache Airflow is a platform to programmatically schedule and mointor workflows as DAGs. With Airflow, we have command line utilities as well as a user interface to visualise pipelines, monitor progress and troubleshoot issues.
