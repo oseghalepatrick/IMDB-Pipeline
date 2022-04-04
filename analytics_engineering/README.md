@@ -11,7 +11,7 @@ A project includes the following files:
 2. *.yml files under folders models, data, macros: documentation files.
 3. Files inside folder models: The sql files contain the scripts to run our models, this will cover staging, core and a datamarts models. At the end, these models will follow this structure:
 
-<img src="images/dbt.png">
+<img src="images/analytics_engineering/dbt.png">
 
 Now that the development is done, its time to setup the `production environment`.
 1. Click on `New Envirinment` from the menu and rename as `Production`
