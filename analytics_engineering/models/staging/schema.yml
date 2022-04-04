@@ -1,0 +1,135 @@
+version: 2
+
+sources:
+    - name: staging
+      database: de-project-344223
+      schema: all_movies_data
+
+      tables:
+        - name: name_basics_data
+        - name: title_basics_data
+        - name: title_principals_data
+        - name: title_episode_data
+        - name: title_ratings_data
+
+models:
+  - name: stg_name_basics_data
+    description: >
+      Contains the following information for names of actors and actress 
+      only in the movies and series they are famous with and their top 
+      3 profession
+    columns:
+      - name: nconst
+        description: alphanumeric unique identifier of the name/person
+        tests:
+            - not_null:
+                severity: warn
+      
+      - name: act_name
+        description: name by which the person is most often credited
+        test:
+            - not_null:
+                severity: warn
+
+      - name: birth_year
+        description: The birh year of the person in YYYY format
+
+      - name: death_year
+        description: >
+          The death year of the person in YYYY format 
+          if applicable, else '\N'
+
+      - name: primary_profession
+        description: >
+          the top-3 professions of the person which is in 
+          (array of strings)
+
+      - name: known_for_titles
+        description: titles the person is known for (array of strings)
+      
+      - name: link
+        description: The IMDB link to the movie/series
+
+  - name: stg_title_basics_data
+    description: >
+      Contains the following information for titles of the movies or series:
+    columns:
+      - name: tconst
+        description: alphanumeric unique identifier of the title
+        tests:
+            - not_null:
+                severity: warn
+
+      - name: title_type
+        description: the type/format of the title (e.g. movie, tvseries)
+
+      - name: primary_title
+        description: >
+           the more popular title / the title used by the filmmakers on 
+           promotional materials at the point of release
+
+      - name: original_title
+        description: original title, in the original language
+
+      - name: is_adult
+        description: >
+          if it is an adult title:
+          0=non-adult title; 
+          1=adult title
+
+      - name: start_year
+        description: >
+          represents the release year of a title. 
+          In the case of TV Series, it is the series start year
+
+      - name: end_year
+        description: TV Series end year. ‘\N’ for all other title types
+
+      - name: runtime_minutes
+        description: primary runtime of the title, in minutes
+
+      - name: genres
+        description: >
+          (string array) – includes up to three genres associated \
+          with the title
+
+  - name: stg_title_principals_data
+    description: >
+      Contains the principal cast for titles of the movies or series:
+    columns:
+      - name: tconst
+        description: alphanumeric unique identifier of the title
+
+      - name: ordering
+        description: a number to uniquely identify rows for a given titleId
+
+      - name: nconst
+        description: alphanumeric unique identifier of the name/person
+
+      - name: category
+        description: the category of job that person was in
+
+      - name: characters
+        description: the name of the character played if applicable, else '\N'
+
+  - name: stg_title_ratings_data
+    description: >
+      Contains the IMDb rating and votes information for titles
+    columns:
+      - name: tconst
+        description: alphanumeric unique identifier of the title
+
+      - name: average_rating
+        description: weighted average of all the individual user ratings
+
+      - name: number_of_votes
+        description: number of votes the title has received
+
+      - name: rating_level
+        description: >
+          The class of ratings the title falls into:
+          5=ratings from 8 to 10
+          4=ratings from 6 to 7.9
+          3=ratings from 4 to 5.9
+          2=ratings from 2 to 3.9
+          1=ratings from 0 to 1.9
