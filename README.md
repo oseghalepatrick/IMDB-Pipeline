@@ -22,7 +22,7 @@ The data is a subset of IMDB dataset which is available for access on the [IMDB 
 3. Datalake: GCP Bucket
 4. Workflow orchestration: Airflow 
 5. Data Warehouse: BigQuery 
-6. Transformations: dbt
+6. Transformations: Data Build Tool (dbt)
 7. Dashboard with Data Studio
 
 ### Cloud: GCP
